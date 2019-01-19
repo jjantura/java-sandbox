@@ -43,17 +43,36 @@ public class LambdaExpression {
             out.println(field);
         }
     }
-
     // member inner class features:
     // has access to all methods, fields, and the outer's this reference
     // has association to outer class instance
     // must be instantiated with an enclosing instance
     // is tied to outer class object at moment of creation
+
+
+    void foo() {
+        // method-local inner classes
+        class MethodLocalInnerClass {
+            public void showOuter() {
+                out.println(field);
+            }
+        }
+
+        MethodLocalInnerClass methodLocalInnerClass = new MethodLocalInnerClass();
+        methodLocalInnerClass.showOuter();
+    }
+    // a local inner class has access to the members of its enclosing class
+    // a local class has access to local variables. In Java SE <= 7 a local class can ONLY access local variables that are declared final
+    // when a local class accesses a local variable or parameter of the enclosing block, it captures that variable or parameter
+    // in Java >= 8, a local class can access local variables and parameters of the enclosing block that are final or effectively final
+    // a variable or parameter whose value is never changed after it is initialized is effectively final
     public static void main(String... args) {
         // Outer outer = new Outer();
         // Outer.Inner inner =  outer.new Inner(); /* can't be done */
         Outer.Inner inner = new Outer.Inner();
         inner.showReference();
+
+        new LambdaExpression().foo();
     }
 }
 
