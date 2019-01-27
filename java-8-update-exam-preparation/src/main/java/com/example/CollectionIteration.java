@@ -28,5 +28,6 @@ public class CollectionIteration {
         names.forEach(System.out::println);
         names.forEach(name -> System.out.println(name.toUpperCase()));
         namesWithIds.forEach((k, v) -> System.out.println(k + " " + v));
+        // for List and Set it is possible to use constructions like collection.forEach and collection.stream.forEach
     }
 }
